@@ -2,13 +2,22 @@
 
 # Building enumerable methods from scratch
 module Enumerable
+  def my_each_with_index
+    i = 0
+    while i < size
+      my_each do |item|
+        yield(item, i)
+        i += 1
+      end
+    end
+    self
+  end
 
+  def my_select
+    
+  end
 end
 
-# You will first have to define my_each
-# on the Array class. Methods defined in
-# your enumerable module will have access
-# to this method
 class Array
   def my_each
     for item in self do
@@ -17,5 +26,7 @@ class Array
   end
 end
 
-arr = [1, 2, 3, 4, 5, 6]
-arr.my_each { |x| puts "#{x + x}" }
+arr = [1, 2, 3]
+arr.my_each_with_index {|x, i| puts "x: #{x}, i: #{i}"}
+puts 'the real one'
+arr.each_with_index {|x, i| puts "x: #{x}, i: #{i}"}
