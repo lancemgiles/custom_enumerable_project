@@ -30,6 +30,14 @@ module Enumerable
     end
     checked == self
   end
+
+  def my_any?
+    checked = []
+    my_each do |item|
+      checked.push(item) if yield(item)
+    end
+    checked.length > 1
+  end
 end
 
 class Array
