@@ -22,6 +22,14 @@ module Enumerable
     end
     selected
   end
+
+  def my_all?
+    checked = []
+    my_each do |item|
+      checked.push(item) if yield(item)
+    end
+    checked == self
+  end
 end
 
 class Array
@@ -33,6 +41,7 @@ class Array
 end
 
 arr = [1, 2, 3]
-p (arr.my_select {|x| x.even?})
+p (arr.my_all? { |x| x < 4 })
+
 puts 'the real one'
-p (arr.select { |x| x.even? })
+p (arr.all? { |x| x < 4 })
