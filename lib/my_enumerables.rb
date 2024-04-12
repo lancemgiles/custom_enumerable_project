@@ -58,6 +58,14 @@ module Enumerable
     end
     counter
   end
+
+  def my_map
+    mapped = []
+    my_each do |item|
+      mapped.push(yield(item))
+    end
+    mapped
+  end
 end
 
 class Array
