@@ -66,6 +66,14 @@ module Enumerable
     end
     mapped
   end
+
+  def my_inject(init = self[0])
+    result = init
+    my_each do |num|
+      result = yield(result, num)
+    end
+    result
+  end
 end
 
 class Array
