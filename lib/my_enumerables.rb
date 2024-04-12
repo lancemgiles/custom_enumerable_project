@@ -46,6 +46,18 @@ module Enumerable
     end
     checked == []
   end
+
+  def my_count
+    counter = 0
+    my_each do |num|
+      if block_given?
+        counter += 1 if yield(num)
+      else
+        return length
+      end
+    end
+    counter
+  end
 end
 
 class Array
@@ -57,7 +69,6 @@ class Array
 end
 
 arr = [1, 2, 3]
-# p (arr.my_all? { |x| x < 4 })
-
-# puts 'the real one'
-# p (arr.all? { |x| x < 4 })
+p arr.my_count
+puts 'the real one'
+p arr.count
