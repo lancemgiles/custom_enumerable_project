@@ -38,6 +38,14 @@ module Enumerable
     end
     checked.length > 1
   end
+
+  def my_none?
+    checked = []
+    my_each do |item|
+      checked.push(item) if yield(item)
+    end
+    checked == []
+  end
 end
 
 class Array
@@ -49,7 +57,7 @@ class Array
 end
 
 arr = [1, 2, 3]
-p (arr.my_all? { |x| x < 4 })
+# p (arr.my_all? { |x| x < 4 })
 
-puts 'the real one'
-p (arr.all? { |x| x < 4 })
+# puts 'the real one'
+# p (arr.all? { |x| x < 4 })
