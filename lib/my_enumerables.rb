@@ -14,7 +14,13 @@ module Enumerable
   end
 
   def my_select
-    
+    selected = []
+    i = 0
+    while i < size
+      selected << self[i] if yield(self[i])
+      i += 1
+    end
+    selected
   end
 end
 
@@ -27,6 +33,6 @@ class Array
 end
 
 arr = [1, 2, 3]
-arr.my_each_with_index {|x, i| puts "x: #{x}, i: #{i}"}
+p (arr.my_select {|x| x.even?})
 puts 'the real one'
-arr.each_with_index {|x, i| puts "x: #{x}, i: #{i}"}
+p (arr.select { |x| x.even? })
